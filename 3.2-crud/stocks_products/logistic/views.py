@@ -19,8 +19,8 @@ class StockFilter(DjangoFilterBackend):
         search = request.query_params.get('search')
         if search is not None:
             queryset = queryset.filter(
-                Q(productstitleicontains=search) |
-                Q(productsdescriptionicontains=search)
+                Q(products__title__icontains=search) |
+                Q(products__description__icontains=search)
             )
         return queryset
 
